@@ -1,0 +1,26 @@
+<!-- header.component.html -->
+<header class="app-header">
+  <nav class="nav-container">
+    <h1 class="app-title">{{ title }}</h1>
+    <div class="nav-links">
+      <button 
+        class="nav-btn" 
+        [class.active]="isActive('home')" 
+        (click)="navigateTo('home')">
+        Home
+      </button>
+      <button 
+        class="nav-btn" 
+        [class.active]="isActive('todo')" 
+        (click)="navigateTo('todo')">
+        Todo
+      </button>
+      <button 
+        class="nav-btn" 
+        [class.active]="isActive('forms')" 
+        (click)="navigateTo('forms')">
+        Forms
+      </button>
+    </div>
+  </nav>
+</header>

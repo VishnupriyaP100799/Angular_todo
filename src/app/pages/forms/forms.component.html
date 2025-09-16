@@ -1,0 +1,61 @@
+<div class="forms-container">
+  <h2>User Information Form</h2>
+  
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="user-form">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input 
+        type="text" 
+        id="name" 
+        formControlName="name" 
+        [class.invalid]="name?.invalid && name?.touched"
+        placeholder="Enter your full name">
+      <div class="error-message" *ngIf="name?.invalid && name?.touched">
+        <span *ngIf="name?.errors?.['required']">Name is required</span>
+        <span *ngIf="name?.errors?.['minlength']">Name must be at least 2 characters</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input 
+        type="email" 
+        id="email" 
+        formControlName="email" 
+        [class.invalid]="email?.invalid && email?.touched"
+        placeholder="Enter your email address">
+      <div class="error-message" *ngIf="email?.invalid && email?.touched">
+        <span *ngIf="email?.errors?.['required']">Email is required</span>
+        <span *ngIf="email?.errors?.['email']">Please enter a valid email</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input 
+        type="tel" 
+        id="phone" 
+        formControlName="phone" 
+        [class.invalid]="phone?.invalid && phone?.touched"
+        placeholder="Enter your 10-digit phone number">
+      <div class="error-message" *ngIf="phone?.invalid && phone?.touched">
+        <span *ngIf="phone?.errors?.['required']">Phone number is required</span>
+        <span *ngIf="phone?.errors?.['pattern']">Please enter a valid 10-digit phone number</span>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="submit-btn">Submit</button>
+      <button type="button" (click)="clearData()" class="clear-btn">Clear</button>
+    </div>
+  </form>
+
+  <div class="submitted-data" *ngIf="isSubmitted">
+    <h3>Submitted Information</h3>
+    <div class="data-card">
+      <p><strong>Name:</strong> {{ submittedData.name }}</p>
+      <p><strong>Email:</strong> {{ submittedData.email }}</p>
+      <p><strong>Phone:</strong> {{ submittedData.phone }}</p>
+    </div>
+  </div>
+</div>
